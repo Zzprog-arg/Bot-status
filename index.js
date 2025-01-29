@@ -14,7 +14,6 @@ YouTube : https://www.youtube.com/@GlaceYT
                                                                        
 ☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆
 
-
 */
 const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
 require('dotenv').config();
@@ -36,11 +35,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log('\x1b[36m[ SERVER ]\x1b[0m', '\x1b[32m SH : http://localhost:' + port + ' ✅\x1b[0m');
 });
-client.user.setActivity("Minecraft", { type: "PLAYING" });
-const statusMessages = ["🎮 Jugando a Humilde | FivePD"];
-const statusTypes = [ 'online'];
-let currentStatusIndex = 0;
-let currentTypeIndex = 0;
 
 async function login() {
   try {
@@ -55,15 +49,11 @@ async function login() {
 }
 
 function updateStatus() {
-  const currentStatus = statusMessages[currentStatusIndex];
-  const currentType = statusTypes[currentTypeIndex];
   client.user.setPresence({
-    activities: [{ name: currentStatus, type: ActivityType.Custom }],
-    status: currentType,
+    activities: [{ name: "Humilde | FivePD", type: ActivityType.Playing }],
+    status: "online",
   });
-  console.log('\x1b[33m[ STATUS ]\x1b[0m', `Updated status to: ${currentStatus} (${currentType})`);
-  currentStatusIndex = (currentStatusIndex + 1) % statusMessages.length;
-  currentTypeIndex = (currentTypeIndex + 1) % statusTypes.length;
+  console.log('\x1b[33m[ STATUS ]\x1b[0m', `Updated status to: Jugando a Humilde | FivePD`);
 }
 
 function heartbeat() {
@@ -75,7 +65,6 @@ function heartbeat() {
 client.once('ready', () => {
   console.log('\x1b[36m[ INFO ]\x1b[0m', `\x1b[34mPing: ${client.ws.ping} ms \x1b[0m`);
   updateStatus();
-  setInterval(updateStatus, 10000);
   heartbeat();
 });
 
@@ -97,6 +86,5 @@ DISCORD :  https://discord.com/invite/xQF9f9yUEM
 YouTube : https://www.youtube.com/@GlaceYT                         
                                                                        
 ☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆
-
 
 */
